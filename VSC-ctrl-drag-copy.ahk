@@ -10,6 +10,7 @@ Website:	http://tinstoys.blogspot.com
 Twitter:	http://twitter.com/tostka
 
 Change Log
+;;; 10:33 AM 10/19/2016 pretty buggy - sometimes it works fine, sometimes not. Definitaly a work in progress.
 ;;; 8:52 AM 10/18/2016 added hs VSC-ctrl-drag: ctrl+lmouse drag copy for Visual Studio Code (leverages getselectedtext())
 
 .DESCRIPTION
@@ -22,17 +23,32 @@ So I quickly slapped this together. Not a lot of testing, but it seems to work f
 
 ;;; #*------v hs VSC-ctrl-drag v------
 ;;; 8:35 AM 10/18/2016 take a stab at adding ctrl-lmouse-drag text copy to vsc
+;;; sometimes it works, sometimes not, flakey at best. 
 ;;;ahk_class Chrome_WidgetWin_1
 #IfWinActive ahk_class Chrome_WidgetWin_1
 LCtrl & LButton UP::
-	;;MsgBox, Ctrl+LButton!
+	ToolTip, VSC Ctrl+Drag Copy
+	SetTimer, RemoveToolTip, 2000
+	;;; not working consist, prepurge cb
+	Clipboard := "" ;
 	selection := GetSelectedText()
+	MouseClick, left ;;click at the current mouse pos:
 	;;MsgBox, CB contains: %selection%
-	;;click at the current mouse pos:
-	MouseClick, left
 	;; paste cb
-	SendInput, ^v
+	;;SendInput, ^v
+	;;; send the cb vari seems to work more consistently
+	;;Send %selection%
+	;;; above problematic even swaps wins and starts dumping wrong wins
+	SendInput ^{Insert} ; 
+	;;; try the slow char-by-char approach
+	/*SetKeyDelay, 50, 50 ; Adjust the speed of character sending here. 30, 30 is faster than 50, 50, but is also less reliable since the window may not respond to faster keystrokes. The number is in milliseconds (1/1000 of a second).
+	Loop, Read, Selection 
+	{
+		Send {RAW}%A_LoopReadLine% ; This will send the current line contents one character at a time.
+		Send `r`n ; This will send the "enter" keypress after each line.
+	} */
 return
+#IfWinActive ;;;ahk_class Chrome_WidgetWin_1
 ;;; #*------^ END VSC-ctrl-drag ^------
 
 ;;; supporting function:
@@ -52,5 +68,10 @@ GetSelectedText() {
 	return (selection = "" ? Clipboard : selection)
 }
 ;;;#*------^ END Function GetSelectedText() ^------
+
+
+
+
+
 
 

@@ -22,7 +22,9 @@ Ecco Format/Font & Format/Size menus.
 I considered using the Pallette buttons (which I routinely use with a mouse), but found that
 Ecco has everything classed together as 'ClassNN:	MauiPowerPal1', with no btn text or other
 identifying features to leveage ControlClick. 
-So, this goes the old slow ugly approach: run the menues!
+The button positions also scale & center as the window expands, providing no static targets for clicks
+
+So, this goes the old slow ugly approach: run the menus!
 Not a lot of testing, but it seems to work for me with Ecco Pro 4.0.1(32-bit)
 *----------^ #*/
 
@@ -31,10 +33,9 @@ Not a lot of testing, but it seems to work for me with Ecco Pro 4.0.1(32-bit)
 ahk_class MauiFrame
 ahk_exe ecco32.exe
 */
-;;;If WinActive("ahk_class MauiFrame"){
 #IfWinActive ahk_class MauiFrame 
-	;; emulate the hotkeys from word, for formatting
-	;; Ctrl+# (Ctrl+shift+3) = Code/Courier New
+	;; emulate the hotkeys I use for Styles in Word, for formatting
+	;; Ctrl+# (Ctrl+shift+3) = Code/Courier New 12
 	^#::
 		;;; winspy shows all palatte btns are same name/class, go to keystrokes:
 		;; FoRmat, Font, Courier : Alt+r, f, c
@@ -43,7 +44,7 @@ ahk_exe ecco32.exe
 		Send {lalt down}r z {lalt up} 1 1 {ENTER} ;;; set 12point
 	return
 	
-	;; Ctrl+@ ((Ctrl+shift+2) = Heading 2
+	;; Ctrl+@ ((Ctrl+shift+2) = Heading 2/Arial 12 Bold
 	^@::
 		;; MsgBox, "HEADING2!" ; 
 		;; FoRmat, Font, Arial : Alt+r, f, a
@@ -54,7 +55,7 @@ ahk_exe ecco32.exe
 		Send {lalt down}r s {lalt up} b ;;; set bold 
 	return
 	
-	;; Ctrl+$ ((Ctrl+shift+4) = Normal
+	;; Ctrl+$ ((Ctrl+shift+4) = Normal/Arial 12 Non-bold
 	^$::
 		;;  FoRmat, Font, Arial : Alt+r, f, a
 		Send {lalt down}r f {lalt up} a ;;; set Arial Font
@@ -64,7 +65,7 @@ ahk_exe ecco32.exe
 	return
 	
 	;;; should also do font sizes too: 12, 10, 8
-	;;; howabout Captlock & 2, 0 & 8
+	;;; using Capslock & 2, 0 & 8 for 12pt, 10pt & 8pt font
 	EcoSz12:
 	capslock & 2::	;;; font size 12
 		;;; then set size 12 : foRmat, siZe, 1,1 (skips 10 , then to 12)

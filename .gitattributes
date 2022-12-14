@@ -1,0 +1,136 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+
+# Standard to msysgit - matches Fieldlevel guide
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain
+*.XLS	 diff=astextplain
+*.xls	 diff=astextplain
+*.XLSX	 diff=astextplain
+*.xlsx	 diff=astextplain
+
+# additional  - Fieldlevel guide
+*.txt text eol=lf
+*.md text eol=lf
+# but for native web dirs, he used:
+#*.md      text eol=crlf
+*.adoc text eol=lf
+*.textile text eol=lf
+*.csv text eol=lf
+*.tab text eol=lf
+*.tsv text eol=lf
+*.sql text eol=lf
+*.ai binary
+
+
+# Git Files - Fieldlevel guide
+# These files are text and should be normalized (convert crlf => lf)
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitconfig text eol=lf
+
+# cSharp / Visual Studio - Fieldlevel guide
+# Custom for Visual Studio
+*.cs     diff=csharp
+
+# win scripting
+*.vbs     text eol=crlf
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+# KirkMunroe settings:
+*.ps1    text  eol=crlf
+# scott hanselman, operating on both win & lnx uses: 
+# *.ps1 eol=lf
+# reportedly MS curr has Win doing LF eol (over crlf)
+*.psm1   text  eol=crlf
+*.psd1   text  eol=crlf
+*.psc1   text  eol=crlf
+*.ps1xml text  eol=crlf
+*.clixml text  eol=crlf
+*.xml    text  eol=crlf
+*.ahk     text eol=crlf
+
+# linux scripting
+*.bash     text eol=lf
+*.sh       text eol=lf
+
+# Serialisation
+*.json     text
+*.toml     text
+*.xml      text
+#*.yaml     text
+*.yaml    text eol=crlf
+*.yml      text
+*.xaml    text eol=crlf
+
+
+# Web - Fieldlevel guide
+*.css     text eol=lf
+*.map     text eol=lf
+*.sass    text eol=lf
+*.json    text eol=lf
+*.js      text eol=lf
+*.htm     text eol=lf
+*.chm     binary
+*.html    text eol=lf
+*.cshtml  text eol=lf
+#*.xml     text eol=lf
+*.svg     text eol=lf
+
+# Images & Media - Fieldlevel guide
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.mov     binary
+*.ico     binary
+*.pdf     binary
+*.psd     binary
+*.eps     binary
+
+# Compression - Fieldlevel guide
+*.gz      binary
+*.zip     binary
+*.7z      binary
+*.nupkg   binary
+# added
+*.gz       binary
+*.tar      binary
+
+# Fonts- Fieldlevel guide
+*.ttf       binary
+*.eot       binary
+*.woff      binary
+*.otf      binary
+
+# Config
+*.conf text eol=lf
+
+# Compiled Dynamic libraries
+*.so      binary
+*.dylib   binary
+*.dll     binary
+*.pdb     binary
+
+# Executables
+*.exe     binary
+*.out     binary
+*.app     binary
+
+# misc 
+*.reg     text eol=crlf
+*.url     text eol=crlf
+
+# Exclude files from exporting - https://www.richie-bendall.ml/gitattributes-generator/
+.gitattributes export-ignore
+.gitignore     export-ignore
